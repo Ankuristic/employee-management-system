@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
 
 function Memo() {
-    const [number, setNumber] = useState('');
+  const [numberA, setNumberA] = useState('');
+  const [numberB, setNumberB] = useState('');
+  const [summation, setSummation] = useState(0);
 
-    const handleChange =(e) =>{
-        setNumber(e.target.value);
+  function calculate() {
+    setSummation(parseInt(numberA) + parseInt(numberB)); // Ensure numberA and numberB are treated as numbers
+  }
 
-    }
-//     const haandleSubmit =(e) =>{
-//         e.prevent.Default;
-//     }
+  const handleChangeA = (e) => {
+    setNumberA(e.target.value);
+  };
+
+  const handleChangeB = (e) => {
+    setNumberB(e.target.value);
+  };
+
   return (
     <>
       <div className='bg-yellow'>
         <h4 className='text-5xl text-center text-red-400 bold'>Factorial Number</h4>
-      
         <h2 className='text-2xl text-center bold'> Enter Number: A </h2>
         <h2 className='text-2xl text-center bold'> Enter Number: B</h2>
-        <form > {/* Attach the handleSubmit function to form submission */}
+        <form>
           <label>
             <input
-              type="number" value={number} onChange={handleChange} className='border rounded-md px-2 py-1 flex items-center justify-center' />
+              type="number"
+              value={numberA}
+              onChange={handleChangeA}
+              className='border rounded-md px-2 py-1 flex items-center justify-center'
+            />
             <input
-              type="number" value={number} onChange={handleChange} className='border rounded-md px-2 py-1 flex items-center justify-center' />
-               <input
-              type="number" value={number} onChange={handleChange} className='border rounded-md px-2 py-1 flex items-center justify-center' />
+              type="number"
+              value={numberB}
+              onChange={handleChangeB}
+              className='border rounded-md px-2 py-1 flex items-center justify-center'
+            />
           </label>
-          
-
-          <button type="submit"  className='border rounded-md '>Submit</button>
+          <button onClick={calculate} type="button" className='border rounded-md bg-orange-400'>
+            Submit
+          </button>
+          <p>Summation: {summation}</p>
         </form>
       </div>
     </>
